@@ -41,6 +41,7 @@ public class ApiBase {
         Assert.assertEquals(200,response.statusCode());//status codu dogrulama islemi yapmak daha kolay
      String deneme = response.jsonPath().getJsonObject("data.first_name");//jsonobject ile responsedaki dataları string olarak döndürebiliyor
      Assert.assertEquals("George",deneme);
+     response.prettyPrint();
     }
 
     @Step("<url> urline post istegi at")
@@ -54,6 +55,8 @@ public class ApiBase {
 
         List<String> list = response.jsonPath().getList("name");//donen responsdaki tüm isimleri liste atılabiliyor.
         Assert.assertEquals(body.get("name"),"morpheus");
+
+        response.prettyPrint();
     }
 
 
@@ -74,5 +77,6 @@ public class ApiBase {
 
         Assert.assertEquals("asd",postResponse.getName());//postresponse classındaki Stringlerle dogrulama islemi yapılıyor
 
+        response.prettyPrint();
     }
 }
