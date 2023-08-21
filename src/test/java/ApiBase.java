@@ -63,20 +63,25 @@ public class ApiBase {
     @Step("<url> urline pojo ile post atma")
     public void creatPojo (String url){
         postMetod postMetod = new postMetod("Yunus","Ormancı");
-        postMetod postMetod1 = new postMetod("asd","asd");
+        postMetod postMetod1 = new postMetod("Ali","Deneme");
         Response response = given(spec)
                 .contentType(ContentType.JSON)
-                .body(postMetod1)//pojo classındaki objeleri direkt jsona cevirip body olarak gönderiyo
+                .body(postMetod)//pojo classındaki objeleri direkt jsona cevirip body olarak gönderiyo
                 .when()
                 .post(url);
 
         response.then()
                 .statusCode(201);
 
-        postResponse postResponse = response.as(org.example.postResponse.class);//response u postresponse classindaki objelere aktariyor
+        postResponse postResponse = response.as(org.example.postResponse.class);//response u postresponse classindaki degiskenlere aktariyor
 
-        Assert.assertEquals("asd",postResponse.getName());//postresponse classındaki Stringlerle dogrulama islemi yapılıyor
+        Assert.assertEquals("Yunus",postResponse.getName());//postresponse classındaki Stringlerle dogrulama islemi yapılıyor
 
         response.prettyPrint();
+    }
+
+    @Step("deneme")
+    public void deneme (){
+        System.out.println("JENKİNS DENEME!");
     }
 }
